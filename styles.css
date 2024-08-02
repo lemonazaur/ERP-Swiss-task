@@ -1,0 +1,158 @@
+body {
+    font-family: Poppins, sans-serif;
+}
+
+/*Nav Bar
+---------------------------------------------------------*/
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #010114;
+    color: white;
+
+    padding: 21px min(166px, 20vw);
+    gap: 10px;
+}
+
+.logo {
+    font-size: 1.5rem;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    padding: 0 1rem;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+/*Search Bar
+---------------------------------------------------------*/
+
+.search-bar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 105px;
+    border-bottom: 1px solid #EDEDED;
+
+    /*Proportional to screen width but always <= 166px */
+    padding: 21px min(166px, 15vw);
+}
+
+.search-bar p{
+    color: #212529;
+    line-height: 30px;
+    font-size: 20px;
+    font-weight: 400;
+    text-align: left;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.search-box {
+    display: flex;
+    align-items: center;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #fff;
+}
+.search-box input {
+    border: none;
+    outline: none;
+    padding: 10px;
+    font-size: 16px;
+    width: 300px;
+}
+.search-box .icon {
+    margin-right: 10px;
+    color: #888;
+    font-size: 20px;
+}
+
+/*
+Other
+---------------------------------------------------------
+todo: sort and clean
+ */
+
+.main-category-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.category-btn {
+    padding: 10px 20px;
+    margin: 5px;
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+
+.category-btn:hover {
+    background-color: #e0e0e0;
+}
+
+.subcategory-block {
+    margin-top: 20px;
+}
+
+@media (min-width: 768px) {
+    .main-category-block {
+        flex-direction: row;
+    }
+
+    ul {
+        flex: 1;
+    }
+
+    .subcategory-block {
+        flex: 2;
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+/* Default styles for mobile */
+.mobile-content {
+    display: flex;
+}
+
+.desktop-content {
+    display: none;
+}
+
+/* Styles for desktop */
+@media (min-width: 768px) {
+    .mobile-content {
+        display: none;
+    }
+
+    .desktop-content {
+        display: flex;
+    }
+}
