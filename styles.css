@@ -10,29 +10,66 @@ nav {
     align-items: center;
     background: #010114;
     color: white;
-
-    padding: 21px min(166px, 20vw);
+    padding: 21px min(166px, 8vw);
     gap: 10px;
+    font-weight: 400;
+    line-height: 24px;
 }
 
-.logo {
-    font-size: 1.5rem;
+.nav-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
 }
 
 .nav-links {
-    list-style: none;
     display: flex;
-}
-
-.nav-links li {
-    padding: 0 1rem;
+    align-items: center;
+    list-style: none;
+    justify-content: flex-start;
+    min-width: 450px;
+    flex: 1;
 }
 
 .nav-links a {
     color: white;
     text-decoration: none;
-    font-size: 1.2rem;
+    font-size: min(16px, 2vw);
 }
+
+.nav-links li {
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.nav-links li img {
+    margin-left: 5px;
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+}
+
+.logo {
+    font-size: 1.5rem;
+    padding: 0 20px;
+}
+
+.contact-info {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex: 1;
+}
+
+.contact-info img {
+    margin-right: 10px;
+}
+
 
 /*Search Bar
 ---------------------------------------------------------*/
@@ -45,7 +82,7 @@ nav {
     border-bottom: 1px solid #EDEDED;
 
     /*Proportional to screen width but always <= 166px */
-    padding: 21px min(166px, 15vw);
+    padding: 21px min(166px, 8vw);
 }
 
 .search-bar p{
@@ -115,7 +152,30 @@ ul {
     margin-top: 20px;
 }
 
-@media (min-width: 768px) {
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Default styles for mobile */
+.desktop-content {
+    display: none;
+}
+.mobile-content {
+    display: flex;
+}
+
+/* Styles for desktop */
+@media (min-width: 900px) {
+    .mobile-content {
+        display: none;
+    }
+
+    .desktop-content {
+        display: flex;
+    }
+
     .main-category-block {
         flex-direction: row;
     }
@@ -126,33 +186,5 @@ ul {
 
     .subcategory-block {
         flex: 2;
-    }
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-
-
-/* Default styles for mobile */
-.mobile-content {
-    display: flex;
-}
-
-.desktop-content {
-    display: none;
-}
-
-/* Styles for desktop */
-@media (min-width: 768px) {
-    .mobile-content {
-        display: none;
-    }
-
-    .desktop-content {
-        display: flex;
     }
 }
