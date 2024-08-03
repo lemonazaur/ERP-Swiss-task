@@ -2,7 +2,14 @@ body {
     font-family: Poppins, sans-serif;
 }
 
-/*Nav Bar
+/*
+BELOW ARE STYLES FOR SPECIFIC CASES
+1. Nav Bar
+    1.1 For mobile
+2. Search Bar
+
+ */
+/* 1 Nav Bar
 ---------------------------------------------------------*/
 nav {
     display: flex;
@@ -10,7 +17,7 @@ nav {
     align-items: center;
     background: #010114;
     color: white;
-    padding: 21px min(166px, 8vw);
+    padding: 21px 0;
     gap: 10px;
     font-weight: 400;
     line-height: 24px;
@@ -56,7 +63,6 @@ nav {
 
 .logo {
     font-size: 1.5rem;
-    padding: 0 20px;
 }
 
 .contact-info {
@@ -64,14 +70,50 @@ nav {
     align-items: center;
     justify-content: flex-end;
     flex: 1;
+    white-space: nowrap;
 }
 
 .contact-info img {
     margin-right: 10px;
 }
 
+.desktop-content{
+    padding: 21px min(166px, 8vw);
+}
+/* 1.1 For Mobile
+---------------------------------------------------------*/
+.menu{
+    padding: 0 15px;
+}
+.mobile-right{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:0 15px;
+}
 
-/*Search Bar
+.bookNow {
+    width: 100%;
+    height: 24px;
+
+    font-size: 16px;
+    font-weight: 700;
+    white-space: nowrap;
+
+    padding: 30px min(40px, 5vw);
+    margin-right: 15px;
+
+    display: flex;
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    text-align: center;
+
+    border: white 1px solid;
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+
+/* 2. Search Bar
 ---------------------------------------------------------*/
 
 .search-bar{
@@ -167,7 +209,18 @@ ul {
 }
 
 /* Styles for desktop */
-@media (min-width: 900px) {
+@media (min-width: 902px) {
+    .logo {
+        font-size: 1.5rem;
+        padding: 0 20px;
+    }
+
+
+
+
+    /*
+    todo: filter
+     */
     .mobile-content {
         display: none;
     }
