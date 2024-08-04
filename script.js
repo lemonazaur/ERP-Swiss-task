@@ -9,6 +9,21 @@ document.addEventListener('DOMContentLoaded', () => {
         level1.innerHTML = '';
         level2.innerHTML = '';
         level3.innerHTML = '';
+        level2.style.display = 'none';
+        level3.style.display = 'none';
+    }
+
+    function clearArrows(level) {
+        level.querySelectorAll('.category-btn > .arrow').forEach(arrow => arrow.remove());
+    }
+
+    function addArrowToItem(item) {
+        if (!item.querySelector('.arrow')) {
+            const arrow = document.createElement('span');
+            arrow.classList.add('arrow');
+            arrow.innerHTML = '>';
+            item.appendChild(arrow);
+        }
     }
 
     function populateMenu(menu, data) {
@@ -16,9 +31,9 @@ document.addEventListener('DOMContentLoaded', () => {
         data.forEach(sub => {
             for (const key in sub) {
                 if (Array.isArray(sub[key])) {
-                    menuHtml += `<li class="submenu-item" data-sub='${JSON.stringify(sub[key])}'>${key} <span class="arrow">></span></li>`;
+                    menuHtml += `<li class="submenu-item category-btn" data-sub='${JSON.stringify(sub[key])}'>${key} <span class="arrow">></span></li>`;
                 } else {
-                    menuHtml += `<li>${sub[key].name}</li>`;
+                    menuHtml += `<li class="category-btn">${sub[key].name}</li>`;
                 }
             }
         });
@@ -29,35 +44,57 @@ document.addEventListener('DOMContentLoaded', () => {
             submenuItem.addEventListener('click', (event) => {
                 event.stopPropagation(); // Prevent triggering parent click event
                 const subMenuData = JSON.parse(submenuItem.getAttribute('data-sub'));
+
+                // Add arrow to the clicked submenu item
+                clearArrows(menu); // Ensure only one arrow per level
+                addArrowToItem(submenuItem);
+
                 if (menu === level1) {
-                    level2.style.display = 'block';
-                    level3.style.display = 'none';
-                    populateMenu(level2, subMenuData);
+                    if (!level2.classList.contains('open')) {
+                        level2.style.display = 'block';
+                        level3.style.display = 'none';
+                        level1.classList.add('open');
+                        level2.classList.remove('open');
+                        level3.classList.remove('open');
+                        populateMenu(level2, subMenuData);
+                    }
                 } else if (menu === level2) {
-                    level3.style.display = 'block';
-                    populateMenu(level3, subMenuData);
+                    if (!level3.classList.contains('open')) {
+                        level3.style.display = 'block';
+                        level2.classList.add('open');
+                        level3.classList.remove('open');
+                        populateMenu(level3, subMenuData);
+                    }
                 }
             });
         });
     }
 
-    menuItems.forEach(item => {
-        item.addEventListener('click', () => {
-            // Hide the woman image when a category button is clicked
-            womanImage.style.display = 'none';
+    function addCategoryButtonEventListeners() {
+        menuItems.forEach(item => {
+            item.addEventListener('click', () => {
+                // Hide the woman image when a category button is clicked
+                womanImage.style.display = 'none';
 
-            // Remove active class from all menu items
-            menuItems.forEach(i => i.classList.remove('active'));
-            // Add active class to the clicked item
-            item.classList.add('active');
+                // Remove open class from all menu items
+                document.querySelectorAll('.main-category-block ul').forEach(ul => ul.classList.remove('open'));
+                // Add open class to the clicked item's parent ul
+                item.parentElement.classList.add('open');
 
-            // Clear previous submenus
-            clearSubMenus();
+                // Add arrow to the clicked item
+                clearArrows(item.parentElement); // Ensure only one arrow per level
+                addArrowToItem(item);
 
-            // Show and populate level1 menu
-            const subMenuData = JSON.parse(item.getAttribute('data-sub'));
-            level1.style.display = 'block';
-            populateMenu(level1, subMenuData);
+                // Clear previous submenus
+                clearSubMenus();
+
+                // Show and populate level1 menu
+                const subMenuData = JSON.parse(item.getAttribute('data-sub'));
+                level1.style.display = 'block';
+                populateMenu(level1, subMenuData);
+            });
         });
-    });
+    }
+
+    addCategoryButtonEventListeners();
 });
